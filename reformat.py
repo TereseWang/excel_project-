@@ -137,9 +137,10 @@ def reformat_calculated(sheets, sheet):
             sheet.cell(row, 2).value = sheet.cell(row - 12, 2).value
             if int(futurev[index1]) == 0:
                 sheet.cell(row, 5).value = 'N/A'
+                index1 = index1 + 1
             else:
-                sheet.cell(row, 5).value = futurev[index]
-            index1 = index1 + 1
+                sheet.cell(row, 5).value = futurev[index1]
+                index1 = index1 + 1
     return sheet
 
 if __name__ == '__main__':
