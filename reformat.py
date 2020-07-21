@@ -118,17 +118,27 @@ def reformat_calculated(sheets, sheet):
 
         sheet.move_range("A{0}:E{1}".format(future_rown, future_rown+10), rows=+12, cols=0)
         update_col(forecastv, future_rown+12, future_rown+23, 5, sheet)
+        index = 0
+        for row in range(future_rown+12, future_rown + 23):
+            if int(futurev[index]) == 0:
+                sheet.cell(row, 5).value = 'N/A'
+            else:
+                sheet.cell(row, 5).value = futurev[index]
+            index = index + 1
 
         list_of_forecasts = ['Forecast'] * 11
         update_col(list_of_forecasts, future_rown, future_rown+11, 3, sheet)
         list_of_future_dates = [date_format(future, "%m-%d-%Y")] * 11
         update_col(list_of_future_dates, future_rown, future_rown+11, 4, sheet)
-        print(int(futurev[0]))
-        list_futurev = [x if int(x) != 0 else 'N/A' for x in futurev]
-        update_col(list_futurev, future_rown, future_rown+11, 5, sheet)
+        index1 = 0
         for row in range(future_rown, future_rown + 11):
             sheet.cell(row, 1).value = sheet.cell(row - 12, 1).value
             sheet.cell(row, 2).value = sheet.cell(row - 12, 2).value
+            if int(futurev[index1]) == 0:
+                sheet.cell(row, 5).value = 'N/A'
+            else:
+                sheet.cell(row, 5).value = futurev[index]
+            index1 = index1 + 1
     return sheet
 
 if __name__ == '__main__':
