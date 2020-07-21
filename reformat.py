@@ -5,6 +5,7 @@ from time import strptime
 import copy
 import datetime
 
+
 @click.group()
 def reformat():
     "Reformat Data files"
